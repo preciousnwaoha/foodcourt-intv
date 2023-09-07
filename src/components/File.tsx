@@ -1,7 +1,6 @@
-import React, { useContext, useRef} from 'react'
+import React, { useContext,} from 'react'
 import { formatDate, getContentTypeHeader, getFileType, getFileTypeColor } from '../lib/utils'
 import { FileType } from '../config/types'
-import {GrFavorite} from 'react-icons/gr'
 import {RiDownloadCloudFill, RiHeartFill, RiHeartLine, RiPrinterFill} from 'react-icons/ri'
 import { AppContext } from '../context/app-context'
 import {BiSolidFileImage} from 'react-icons/bi'

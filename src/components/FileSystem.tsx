@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, { useState, useContext} from 'react';
 import Search from './Search';
 import Sort from './Sort';
 import { FileType } from '../config/types';
@@ -6,17 +6,14 @@ import Folder from './Folder';
 import File from './File';
 import FileModal from './FileModal';
 import { AppContext } from '../context/app-context';
-import { ApplySortBy, findFolder, findFolderById, getContentTypeHeader, getFileType } from '../lib/utils';
+import { ApplySortBy, findFolder,  getFileType } from '../lib/utils';
 import Download from './Download';
 import { useSearchParams, useParams, Link } from 'react-router-dom';
 import { matchSorter } from 'match-sorter';
 
-interface propTypes {
-  files: FileType[]
-}
 const FileSystem = () => {
   const { id } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const appCtx = useContext(AppContext)
 
   
@@ -27,7 +24,7 @@ const FileSystem = () => {
    const searchQuery = searchParams.get('search');
    const sortBy = searchParams.get('sort-by');
 
-  const { files, folderStructure } = appCtx
+  const { files, } = appCtx
 
   const [selectedFile, setSelectedFile] = useState<FileType | null >(null)
   const [downloadingFiles, setDownloadingFiles] = useState<FileType[]>([])
@@ -45,7 +42,7 @@ const FileSystem = () => {
     
 
     const fileType = getFileType(file.src)
-    const contentType = getContentTypeHeader(fileType!)
+    // const contentType = getContentTypeHeader(fileType!)
 
     await fetch(file.src)
     .then(response => {
@@ -68,12 +65,7 @@ const FileSystem = () => {
 
     }
 
-    const doneDownloadingFile = (file: FileType) => {
-    setDownloadingFiles(prev => {
-      const stillDownloading = prev.filter(_file => _file.id !== file.id)
-      return stillDownloading
-    })
-    }
+    
 
   const folderFromId = findFolder(files, id!)
 
@@ -98,11 +90,10 @@ const FileSystem = () => {
   const folders = ApplySortBy(sortBy || "", inViewFiles.filter(file => file.type === "folder") )
   const realFiles = ApplySortBy(sortBy || "", inViewFiles.filter(file => file.type === "file"))
 
-  const canGoBack = folderStructure.length > 0
+  // const canGoBack = folderStructure.length > 0
 
   const contentIsEmpty = realFiles.length === 0 && folders.length === 0
 
-  console.log({realFiles})
 
   
 

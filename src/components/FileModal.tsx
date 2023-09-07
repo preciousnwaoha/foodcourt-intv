@@ -3,8 +3,6 @@ import { FileType } from '../config/types'
 import {RiDownloadCloudFill, RiCloseFill} from 'react-icons/ri'
 import { formatDate, getContentTypeHeader, getFileType } from '../lib/utils'
 import axios from 'axios'
-import {BiSolidFileImage} from 'react-icons/bi'
-import {BsFillFileEarmarkPdfFill} from 'react-icons/bs'
 
 
 
@@ -31,50 +29,6 @@ const FileModal = ({file, onClose, onDownload}: propTypes) => {
       };
 
 
-const downloadD = async () => {
-  try {
-    
-    // Use the cors-anywhere proxy to bypass CORS restrictions
-    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const proxiedUrl = `${proxyUrl}${file.src}`;
-    
-    // Fetch the proxied PDF file
-    const response = await axios.get(proxiedUrl, {
-      responseType: 'blob', // Set the response type to 'blob' for binary data
-    });
-
-    if (response.status === 200) {
-      // Create a downloadable link for the PDF
-      const blob = new Blob([response.data], { type: contentType! });
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'Example-file.pdf';
-      a.click();
-      window.URL.revokeObjectURL(url); // Release the object URL
-    } else {
-      console.error('Failed to fetch thefile.');
-    }
-  } catch (error) {
-    console.error('Error:', error);
-  }
-};
-
-const downloadEmployeeData = async () => {
-        const corsProxyUrl = 'https://cors-anywhere.herokuapp.com/';
-
-        await fetch(corsProxyUrl + file.src)
-            .then(response => {
-                response.blob().then(blob => {
-                    let url = window.URL.createObjectURL(blob);
-                    let a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'Example-PDF-file.' + fileType;
-                    a.click();
-                });
-                //window.location.href = response.url;
-        });
-}
 
 
   return (

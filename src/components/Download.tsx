@@ -7,7 +7,7 @@ interface propTypes {
 }
 
 const Download = ({file}: propTypes) => {
-    const [percentage, setPercentage] = useState(0);
+    // const [percentage, setPercentage] = useState(0);
     
     
 

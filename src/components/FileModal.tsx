@@ -33,7 +33,7 @@ const FileModal = ({file, onClose, onDownload}: propTypes) => {
 
   return (
     <div className='fixed inset-0 bg-black bg-opacity-20  backdrop-blur-xxs flex justify-center items-center'>
-        <div className='bg-white w-1/2 min-h-44  py-2 rounded-lg '>
+        <div className='bg-white w-1/2 min-h-44 max-h-[90vh]  py-2 rounded-lg '>
             <div className='flex justify-between items-center px-4 border-b py-2 mb-4'>
                 
                     <button onClick={handleDownloadFile} 
@@ -49,7 +49,7 @@ const FileModal = ({file, onClose, onDownload}: propTypes) => {
             </div>
             
             <div className=' px-4 mb-2'>
-                <div className='max-h-[70vh] rounded-md relative overflow-hidden mb-2 bg-[#F2F5F7]'>
+                <div className='max-h-[calc(90vh-150px)] rounded-md relative overflow-auto mb-2 bg-[#F2F5F7]'>
                     <img src={file.src} alt={file.name} className='object-fill w-full h-full' />
                 </div>
                 

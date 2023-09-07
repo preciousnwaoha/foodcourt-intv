@@ -65,6 +65,14 @@ const FileSystem = () => {
 
     }
 
+    const handleRemoveDownload = (file: FileType) => {
+      setDownloadingFiles(prev => {
+        const stillDownloading = prev.filter(_file => _file.id !== file.id)
+        return stillDownloading
+      })
+    }
+
+
     
 
   const folderFromId = findFolder(files, id!)
@@ -155,7 +163,7 @@ const FileSystem = () => {
       <div className='fixed inline-block top-2 right-2 max-h-[80vh] overflow-auto p-2'>
         <ul>
             {downloadingFiles.map((file, index) => {
-                return <Download key={index} file={file} />
+                return <Download key={index} file={file} onRemove={handleRemoveDownload} />
             })}
         </ul>
       </div>

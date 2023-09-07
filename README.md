@@ -4,7 +4,7 @@
 
 FoodCourt-Intv is a web-based application that allows users to search for nearby food courts and view information about the available restaurants within those food courts. This project is built using Django and utilizes the Google Places API to fetch location data.
 
-![FoodCourt-Intv Screenshot](/prev.png)
+![FoodCourt-Intv Screenshot](prev.png)
 
 ## Features
 

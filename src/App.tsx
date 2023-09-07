@@ -1,25 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState, useContext} from 'react';
 import './App.css';
+import { AppContext } from './context/app-context';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import FileSystem from './components/FileSystem';
+
 
 function App() {
+  const appCtx = useContext(AppContext)
+
+  const {setAllFiles, files, } = appCtx
+
+ 
+
+  useEffect(() => {
+    const getFiles = async () => {
+      const res = await fetch('/site.json')
+      const data = await res.json()
+      // console.log({data})
+      setAllFiles(data)
+    }
+    getFiles()
+  }, [])
+
+
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+    
+      <Routes  >
+        <Route path="/" element={<FileSystem  />} />
+        
+        <Route path="/:id" element={<FileSystem  />} />
+      </Routes>
+    </BrowserRouter>
+    
   );
 }
 

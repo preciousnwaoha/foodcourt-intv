@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import { FileType } from '../config/types';
 import {RiCloseFill, RiFolder3Fill} from 'react-icons/ri'
 

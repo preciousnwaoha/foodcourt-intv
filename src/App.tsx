@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, {useEffect, useContext} from 'react';
 import './App.css';
 import { AppContext } from './context/app-context';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -8,7 +8,7 @@ import FileSystem from './components/FileSystem';
 function App() {
   const appCtx = useContext(AppContext)
 
-  const {setAllFiles, files, } = appCtx
+  const {setAllFiles,  } = appCtx
 
  
 

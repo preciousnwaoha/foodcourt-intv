@@ -49,8 +49,8 @@ const FileModal = ({file, onClose, onDownload}: propTypes) => {
             </div>
             
             <div className=' px-4 mb-2'>
-                <div className='h-60 rounded-md relative overflow-hidden mb-2 bg-[#F2F5F7]'>
-                    <img src={file.src} alt={file.name} className='object-fill' />
+                <div className='max-h-[70vh] rounded-md relative overflow-hidden mb-2 bg-[#F2F5F7]'>
+                    <img src={file.src} alt={file.name} className='object-fill w-full h-full' />
                 </div>
                 
                 <div className='flex items-center'>
